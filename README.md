@@ -8,6 +8,6 @@ To run in local system:
 4) Enter command 'python manage.py runserver' (If the above frameworks/libraries were installed in pip3 run command 'python3 manage.py runserver')
 
 This Website as of now contains:
-1)User Login App
-2)User Profile App #work_in_progress
+1) User Login App
+2) User Profile App #work_in_progress
 3)Mess System App #work_in_progress
