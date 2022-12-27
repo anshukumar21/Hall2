@@ -26,15 +26,20 @@
             <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" >Log In</button></div><a class="forgot" href="#">Forgot Password?</a>
         </form> {% endcomment %}
         <form method="post"> {% csrf_token %}
-            <fieldset class="form-group">
+            <fieldset class="form-group text-center ">
                 <legend class="border-bottom mb-4" style="color: white;">Sign In Now</legend>
                 {{ form|crispy }}
             </fieldset>
             {% if request.GET.next %}
                 <input type="hidden" name = "next" value="{{ request.GET.next }}">
             {% endif %}
-            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" >Log In</button></div><a class="forgot" href="{% url 'change_password' %}">Forgot Password?</a>
+            <div class="mb-4 mt-4">
+                <button class="btn btn-outline-primary d-block w-30 text-center mx-auto" type="submit" >Log In</button>
+            </div>
+            <div class="container text-center">
+            <a class="forgot" href="{% url 'change_password' %}">Forgot Password?</a>
             <a class="forgot" href="{% url 'signup' %}">Sign Up</a>
+            </div>
         </form>
     </section>
     <!-- End: Login Form Clean -->
