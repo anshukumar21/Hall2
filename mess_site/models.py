@@ -9,7 +9,7 @@ class MessMain(models.Model) :
   
     main_item_name=models.CharField(null=True,max_length=35)
     day_of_the_week=models.CharField(null=True,max_length=10)
-    meal_type = models.CharField(null=True,max_length=10)
+    type_of_meal = models.CharField(null=True,max_length=10)
     
     def __str__(self):
         return self.main_item_name

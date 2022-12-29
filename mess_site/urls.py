@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
 
-#This App handles 2 URL's : for getting main menu list, for getting extras menu list
+#This App handles 3 URL's : for getting menu list, for adding menu items by manager, main menu page (redirects)
 
 urlpatterns = [
-    path('main_menu_list/',views.main_menu_list,name='main_menu_list'),
-    path('extras_menu_list/',views.extras_menu_list,name='extras_menu_list'),
+    path('',views.mess_home,name='mess'),
+    path('menu/',views.menu_view,name='menu'),
+    path('manager/',views.manager_view,name='manager_view'),
 ]

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>253</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans&amp;display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css?h=37efe7e508357f382d0a5b2b73cd47ee">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css?h=f404fe8387b228cbcfdf38e1bf9c3d2a">
+    <script>
+        function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+function buildList() {
+    var wrapper = document.getElementById('idhar');
+    wrapper.innerHTML = "";
+    var url = 'https://digi-campus.herokuapp.com/api/main_extras_list/';
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            var list = data;
+            for (var i in list) {
+                var item = '<div class="card" id="data-row-' + i + '" style="border-radius: 20px;background: #f2f5fe;border-bottom-width: 12px;border-bottom-color: rgb(178,185,236);box-shadow: 0px 35px 51px #b2b9ec;margin-bottom: 16px;margin-top: 16px;"><div class="card-body"><div class="row"><div class="col d-flex" style="width: 25%;"><p class="d-md-flex d-xxl-flex justify-content-md-center align-items-md-center align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">' + list[i].extras_1 + '</p></div><div class="col d-flex" style="width: 25%;"><p class="d-md-flex d-xxl-flex justify-content-md-center align-items-md-center align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">Extra</p></div><div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 25%;"><p class="d-xxl-flex align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);"><i class="fa fa-inr" aria-hidden="true"></i>' + list[i].price_1 + '</p></div><div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-end align-items-xxl-center" style="width: 25%;"><button class="btn btn-danger" onclick="deleteItem(' + list[i].id + ')" type="button" style="border-radius: 8px;border-width: 0px;background: #f13b3b;"><i class="fa fa-close"></i></button></div></div></div></div>';
+                wrapper.innerHTML += item;
+            }
+        });
+    url = 'https://digi-campus.herokuapp.com/api/main_menu_list/';
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            var list = data;
+            for (var i in list) {
+                var item = '<div class="card" id="mess-row-' + i + '" style="border-radius: 20px;background: #f2f5fe;border-bottom-width: 12px;border-bottom-color: rgb(178,185,236);box-shadow: 0px 35px 51px #b2b9ec;margin-bottom: 16px;margin-top: 16px;"><div class="card-body"><div class="row"><div class="col d-flex" style="width: 25%;"><p class="d-md-flex d-xxl-flex justify-content-md-center align-items-md-center align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">' + list[i].main_1 + '</p></div><div class="col d-flex" style="width: 25%;"><p class="d-md-flex d-xxl-flex justify-content-md-center align-items-md-center align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">Basic</p></div><div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 25%;"><p class="d-xxl-flex align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);"><i class="fa fa-inr" aria-hidden="true"></i>' + list[i].price_1 + '</p></div><div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-end align-items-xxl-center" style="width: 25%;"><button class="btn btn-danger"  onclick="delete_f_Item('+list[i].id+')" type="button" style="border-radius: 8px;border-width: 0px;background: #f13b3b;"><i class="fa fa-close"></i></button></div></div></div></div>';
+                wrapper.innerHTML += item;
+            }
+        })
+}
+
+function update_list() {
+    var if_extras = document.getElementById('check');
+    if (if_extras.checked) update_extra_list();
+    //if (if_extras =="on") update_extra_list();
+    else update_main_list();
+}
+
+function update_main_list() {
+    let url = 'http://127.0.0.1:8000/mess_site/manager/';
+    let name = document.getElementById('name_main').value;
+    let day = document.getElementById('day').value;
+    let type_of_meal = document.getElementById('type_of_meal').value;
+    let main = 1;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({
+            "main_item_name": name,
+            "day_of_the_week": day,
+            "main" : main,
+            "type_of_meal" : type_of_meal,
+        })
+    }).then(function(response) {
+        buildList();
+    })
+}
+
+function update_extra_list() {
+    let url = 'http://127.0.0.1:8000/mess_site/manager/';
+    let name = document.getElementById('name_extra').value;
+    let price = document.getElementById('price').value;
+    let main = 0;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({
+            "extras_name": name,
+            "extras_price": price,
+            "main" : main,
+        })
+    }).then(function(response) {
+        buildList();
+    })
+}
+
+function deleteItem(id) {
+    fetch('https://digi-campus.herokuapp.com/api/main_extras_delete/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        }
+    }).then((response) => {
+        buildList();
+    })
+}
+function delete_f_Item(id) {
+    fetch('https://digi-campus.herokuapp.com/api/main_menu_delete/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        }
+    }).then((response) => {
+        buildList();
+    })
+}
+    </script>
+</head>
+
+<body onload="buildList()">
+<body style="height: 1080px;border-width: 1px;border-color: rgb(255,255,255);background: rgb(233,236,251);">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <!-- Start: Navigation with Search -->
+                <nav class="navbar navbar-light navbar-expand-lg navigation-clean-search" style="background: #6713ef;">
+                    <div class="container-fluid"><img src="{% static 'img/Untitled-1.png' %}" style="width: 50px;margin-left: -16px;"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);font-size: 30px;">DigiCampus</a><button data-bs-toggle="collapse"
+                            class="navbar-toggler" data-bs-target="#navcol-1"><span
+                                class="visually-hidden">Toggle navigation</span><span
+                                class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="navbar-nav">
+                                <li class="nav-item" style="width: 60px;height: 40px;"><button class="btn btn-primary" type="button" style="background: rgb(103,19,239);transform: scale(1.33);border-width: 0px;"><i
+                                            class="fa fa-bell-o" style="transform: scale(1.33);"></i></button></li>
+                                <li class="nav-item" style="width: 60px;">
+                                    <a class="nav-link" style="height: 40px;padding-left: 0px;"><img src="{% static 'img/ereh1.jpg' %}" style="width: 40px;border-radius: 20px;transform: translateY(0px);margin-top: -8px;border: 2px solid var(--bs-white) ;"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- End: Navigation with Search -->
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs" style="box-shadow: 0px 1px 8px;background: #ffffff;">
+        {% comment %} <li class="nav-item">
+            <a class="nav-link" href="mess_manager_manage.html" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fas fa-edit"></i> Manage
+            </a>
+        </li> {% endcomment %}
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'menu'  %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fas fa-clipboard-list"></i> Menu
+            </a>
+        </li>
+    </ul>
+    <div class="container" style="margin-top: 40px;padding-right: 32px;padding-left: 32px;">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h1 style="font-family: Nunito, sans-serif;font-weight: bold;text-align: left;color: rgb(0,0,0);">
+                            Hall 2</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h1 style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-weight: bold;">Add Extra Item
+                        </h1>
+                    </div>
+                </div>
+                {% comment %} <div class="row" style="padding-bottom: 16px;">
+                    <div class="col">
+                        <div class="dropdown"><button class="btn btn-dark dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(233,236,251);color: rgb(33,37,41);border-width: 0px;font-family: Nunito, sans-serif;">Monday</button>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">Monday</a><a class="dropdown-item" href="#">Tuesday</a><a class="dropdown-item" href="#">Wednesday</a><a class="dropdown-item" href="#">Thusrday</a><a class="dropdown-item" href="#">Friday</a>
+                                <a
+                                    class="dropdown-item" href="#">Saturday</a><a class="dropdown-item" href="#">Sunday</a></div>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+                <div class="row">
+                    <div class="col" style="background: #d5d7ee;border-radius: 30px;">
+                        <div class="vstack" style="margin-top: 48px;margin-bottom: 48px;padding-left: 32px;padding-right: 32px;">
+                            <div class="card"style="border-radius: 20px;background: #f2f5fe;border-bottom-width: 12px;border-bottom-color: rgb(178,185,236);box-shadow: 0px 35px 51px #b2b9ec;margin-bottom: 16px;margin-top: 16px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                            <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 35%;max-width: 35%;">Item Name<input type="text" style="font-family: Nunito, sans-serif;text-align: left;width: 100%;" placeholder="Item Name" id="name_extra"></div>
+                                            <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Price<input type="number" placeholder="0" min="0" id="price" style="width: 100%;"></div>
+                                            <div class="col d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-end align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end justify-content-xxl-end align-items-xxl-center"
+                                                style="width: 10%;"><button class="btn btn-primary" type="button" style="border-radius: 8px;" onclick="update_extra_list()"><i id="adding" class="fas fa-plus" ></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h1 style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-weight: bold;">Add Main Menu Items
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="background: #d5d7ee;border-radius: 30px;">
+                                    <div class="vstack" style="margin-top: 48px;margin-bottom: 48px;padding-left: 32px;padding-right: 32px;">
+                                        <div class="card"style="border-radius: 20px;background: #f2f5fe;border-bottom-width: 12px;border-bottom-color: rgb(178,185,236);box-shadow: 0px 35px 51px #b2b9ec;margin-bottom: 16px;margin-top: 16px;">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                        <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 35%;max-width: 35%;">Item Name<input type="text" style="font-family: Nunito, sans-serif;text-align: left;width: 100%;" placeholder="Item Name" id="name_main"></div>
+                                                        <label for="day">Day : </label>
+                                                        <select name="day" id="day">
+                                                              <option value="Monday">Monday</option>
+                                                              <option value="Tuesday">Tuesday</option>
+                                                              <option value="Wednesday">Wednesday</option>
+                                                              <option value="Thursday">Thursday</option>
+                                                              <option value="Friday">Friday</option>
+                                                              <option value="Saturday">Saturday</option>
+                                                              <option value="Sunday">Sunday</option>
+                                                        </select>
+                                                        <label for="type_of_meal">Meal Type : </label>
+                                                        <select name="type_of_meal" id="type_of_meal">
+                                                              <option value="Breakfast">Breakfast</option>
+                                                              <option value="Lunch">Lunch</option>
+                                                              <option value="Dinner">Dinner</option>
+                                                        </select>
+                                                        <div class="col d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-end align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end justify-content-xxl-end align-items-xxl-center"
+                                                            style="width: 10%;"><button class="btn btn-primary" type="button" style="border-radius: 8px;" onclick="update_main_list()"><i id="adding" class="fas fa-plus" ></i></button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% comment %}
+                            <div id="idhar"></div>
+                            <div class="card" style="border-radius: 20px;background: #f2f5fe;border-bottom-width: 12px;border-bottom-color: rgb(178,185,236);box-shadow: 0px 35px 51px #b2b9ec;margin-bottom: 16px;margin-top: 16px;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col d-flex" style="width: 25%;">
+                                            <p class="d-md-flex d-xxl-flex justify-content-md-center align-items-md-center align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">
+                                                Item Name</p>
+                                        </div>
+                                        <div class="col d-flex" style="width: 25%;">
+                                            <p class="d-md-flex d-xxl-flex justify-content-md-center align-items-md-center align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">
+                                                Basic</p>
+                                        </div>
+                                        <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 25%;">
+                                            <p class="d-xxl-flex align-items-xxl-center" style="width: 100%;text-align: left;font-family: Nunito, sans-serif;margin-bottom: 0px;margin-top: 0px;color: rgb(0,0,0);">
+                                                <i class="fa fa-inr" aria-hidden="true"></i> 69
+                                            </p>
+                                        </div>
+                                        <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-end align-items-xxl-center" style="width: 25%;"><button class="btn btn-danger" type="button" style="border-radius: 8px;border-width: 0px;background: #f13b3b;"><i
+                                                    class="fa fa-close"></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                {% comment %} <div class="row" style="margin-top: 64px;">
+                    <div class="col d-xxl-flex justify-content-xxl-center"><button class="btn btn-success" type="button" style="background: #20CF46;border-width: 0px;font-family: Nunito, sans-serif;" data-bs-target="#toast-1" data-bs-toggle="toast">Save&nbsp;<i
+                                class="fa fa-save"></i></button></div>
+                    <div class="col d-xxl-flex justify-content-xxl-center"><button class="btn btn-secondary" type="button" style="background: #f19e22;border-width: 0px;font-family: Nunito, sans-serif;">Generate&nbsp;<i
+                                class="fa fa-download"></i></button></div>
+                    <div class="col d-xxl-flex justify-content-xxl-center"><button class="btn btn-danger" type="button" style="background: #FE2626;border-width: 0px;font-family: Nunito, sans-serif;" data-bs-target="#modal-1" data-bs-toggle="modal">Clear All&nbsp;<i
+                                class="far fa-trash-alt"></i></button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast-container">
+        <div class="toast fade hide" role="alert" data-bs-delay="3000" id="toast-1">
+            <div class="toast-header"><strong class="me-auto"><i
+                        class="fa fa-check text-success"></i>Saved</strong><button class="btn-close ms-2 mb-1 close" data-bs-dismiss="toast"></button></div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p style="text-align: center;">Are you sure you want to clear all data?</p>
+                </div>
+                <div class="modal-footer d-flex flex-row justify-content-xxl-center"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal" style="margin-right: 36px;">No</button><button class="btn btn-danger" type="button" data-bs-dismiss="modal" style="margin-right: 36px;">Yes</button></div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.min.js?h=85f7edd8f6c71c50dab4f60d34aac6de"></script>
+</body>
+
+</html>

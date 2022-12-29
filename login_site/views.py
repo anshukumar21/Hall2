@@ -6,6 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
+#View 0 : For handling error
+def handler404(request, *args, **argv):
+    return render(request,'404error.html')
+
 #View 1 : To Sign Up a User according to the in built User model and the form defined in .forms
 def sign_up_view(request):
     if request.method == "POST" :

@@ -69,7 +69,7 @@ function update_main_list() {
 }
 
 function update_extra_list() {
-    var url = 'https://digi-campus.herokuapp.com/api/main_extras_create/';
+    var url = 'http://127.0.0.1:8000/mess_site/manager/';
     var name = document.getElementById('name').value;
     var price = document.getElementById('price').value;
     fetch(url, {
@@ -79,10 +79,8 @@ function update_extra_list() {
             'X-CSRFToken': csrftoken,
         },
         body: JSON.stringify({
-            "id": 1,
-            "extras_1": name,
-            "price_1": price,
-            "hall_number": 5
+            "extras_name": name,
+            "extras_price": price
         })
     }).then(function(response) {
         buildList();
