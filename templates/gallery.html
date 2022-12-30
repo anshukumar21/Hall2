@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Reflector</title>
+    <link rel="stylesheet" href="{% static 'css/jquery.flipster.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery_style.css' %}">
+</head>
+<body>
+    <div class="hero">
+        <div class="carousel">
+            <ul>
+                <li><img src="{% static 'img/badminton court.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/barber.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/basketball court with night facility.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/basketball.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/electrity.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/football field.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/hall front view.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/iron shop.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/lawn.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/peacock.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/print shop.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/terrace.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/views.jpg' %}" alt=""></li>
+                <li><img src="{% static 'img/volleyball court.jpg' %}" alt=""></li>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="{% static 'js/jquery.flipster.min.js' %}"></script>
+    <script>
+    $('.carousel').flipster({
+        style:'carousel',
+        spacing: -0.3,
+    });
+    </script>
+</body>
+</html>

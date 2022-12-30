@@ -11,3 +11,4 @@ This Website as of now contains:
 1) User Login App
 2) User Profile App #work_in_progress
 3) Mess System App #work_in_progress
+4) Home app 
