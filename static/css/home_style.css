@@ -1,15 +1,17 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Bellota Text','Poppins',sans-serif;
     box-sizing: border-box;
 }
 html{
     scroll-behavior: smooth;
 }
 body{
-    background: #080808;
-    color: #fff;
+   justify-content1: center;
+   align-items: center;
+   background: black;
+   color: white;
 }
 #header{
     width: 100%;
@@ -259,79 +261,99 @@ nav.sticky ul{
     transform: translate(-10px);
 }
 /* --------------------------hec---------------------- */
-#hec{
-    padding: 50px 0;
+.body1
+{
+   display: flex;
+   justify-content1: center;
+   align-items: center;
+   min-height: 100vh;
+   width: 100%;
+   background: #f2f3f7;
 }
-.work-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
+.hec
+{
+   display: flex;
+   justify-content1: center;
+   align-items: center;
+   flex-wrap: wrap;
+   margin: 150px;
 }
-.work{
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
+.hec .card1
+{
+   width: 300px;
+   height: 300px;
+   padding: 50px 30px;
+   margin: 30px;
+   background: #1e2022;
+   box-shadow: 0.6em 0.6em 1.2em rgb(43, 46, 48),
+               -0.5em -0.5em 1em rgb(24, 26, 27);
+   margin-bottom: 90px;
+   border-radius: 20px;
 }
-.work img{
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-    transition: transform 0.5s;
+.hec .card1 .content1
+{
+   display: flex;
+   justify-content1: center;
+   align-items: center;
+   flex-direction: column;
 }
-.layer{
-    width: 100%;
-    height: 0;
-    background: linear-gradient(rgba(0,0,0,0.6),#0066FF);
-    border-radius: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    font-size: 14px;
-    transition: height 0.5s;
+.hec .card1 .content1 .imgBx
+{
+   width: 180px;
+   height: 180px;
+   border-radius: 50%;
+   position: relative;
+   margin-bottom: 20px;
+   overflow: hidden;
+   transform: translateY(-150px);
 }
-.layer h3{
-    font-weight: 500;
-    margin-bottom: 20px;
+.hec .card1 .content1 .imgBx img
+{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
 }
-.layer a{
-    margin-top: 20px;
-    color: #0066FF;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 60px;
-    background: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    text-align: center;
+.hec .card1 .content1 .content1Bx h4
+{
+   color: #9c7de6;
+   font-size: 1.5rem;
+   font-weight: bold;
+   text-align: center;
+   letter-spacing: 1px;
+   padding-bottom: 30px;
+   transform: translateY(-150px);
 }
-.work:hover img{
-    transform: scale(1.1);
+.hec .card1 .content1 .content1Bx p
+{
+   color: #6c758f;
+   font-size: 1rem;
+   font-weight: bold;
+   text-align: center;
+   padding-bottom: 10px;
+   transform: translateY(-150px);
 }
-.work:hover .layer{
-    height: 100%;
+.hec .card1 .content1 .sci
+{
+   margin-top: 10px;
+   padding-top: 10px;
+   margin-bottom: 150px;
+   transform: translateY(-150px);  
 }
-.btn{
-    display: block;
-    margin: 50px auto;
-    width: fit-content;
-    border: 1px solid #0066FF;
-    padding: 14px 50px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: white;
-    transition: background 0.5s;
+.hec .card1 .content1 .sci a
+{
+   text-decoration: none;
+   color: #6c758f;
+   font-size: 30px;
+   margin: 10px;
+   transition: color 0.4s;
+   transform: translateY(-150px);
 }
-.btn:hover{
-    background: #0066FF;
+.hec .card1 .content1 .sci a:hover
+{
+   color: #0196e3;
 }
 
 /* ------------------contact--------------------- */
