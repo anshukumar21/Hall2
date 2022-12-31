@@ -1,0 +1,273 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+body{
+    background: white;
+    min-height: 200vh;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px 100px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    transition: 0.6s;
+    z-index: 1000000;
+}
+header.sticky{
+    padding: 5px 100px;
+    background: white;
+}
+header .logo{
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.6s;
+}
+header ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header ul li{
+    position: relative;
+    list-style: none;
+}
+header ul li a{
+    position: relative;
+    padding: 0 15px;
+    text-decoration: none;
+    color: black;
+    letter-spacing: 2px;
+    font-weight: 500px;
+    transition: 0.6s;
+}
+.banner{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(bg.png);
+    background-size: cover;
+}
+header.sticky .logo,
+header.sticky ul li a{
+    color: black;
+}
+/* --------------------------text transition------------------- */
+.header-text{
+    font-size: 30px;
+    padding-top: 200px;
+}
+.header-text h1{
+    font-size: 60px;
+}
+.header-text h1 span{
+    color: #0066FF;
+}
+/* -------------------------------------About us-------------------------------------------- */
+.counter-up{
+    background: url("bg.png") no-repeat;
+    min-height: 50vh;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 0 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .counter-up::before{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+  }
+  .counter-up .content{
+    z-index: 1;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .counter-up .content .box{
+    border: 1px dashed rgba(255,255,255,0.6);
+    width: calc(25% - 30px);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .content .box .icon{
+    font-size: 48px;
+    color: #e6e6e6;
+  }
+  .content .box .counter{
+    font-size: 50px;
+    font-weight: 500;
+    color: #f2f2f2;
+    font-family: sans-serif;
+  }
+  .content .box .text{
+    font-weight: 400;
+    color: #ccc;
+  }
+  @media screen and (max-width: 1036px) {
+    .counter-up{
+      padding: 50px 50px 0 50px;
+    }
+    .counter-up .content .box{
+      width: calc(50% - 30px);
+      margin-bottom: 50px;
+    }
+  }
+  @media screen and (max-width: 580px) {
+    .counter-up .content .box{
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .wrapper{
+      padding: 20px;
+    }
+    .counter-up{
+      padding: 30px 20px 0 20px;
+    }
+  }
+
+/* -------------------------------galllery -------------------------------------- */
+.hero{
+  width: 100%;
+  height: 70vh;
+  background: rgb(255, 255, 255);
+  overflow: hidden;
+}
+.hero .carousel{
+  width: 300px;
+  margin: 100px auto 0;
+  overflow: visible;
+}
+/* .carousel img{
+  -webkit-box-reflect: below 20px linear-gradient(rgba(255,255,255,0.1),rgba(255,255,255,0.3));
+} */
+/* -----------------------------------------------hec csss-------------------------------------- */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 50px;
+  }
+.hec
+{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   margin: 150px;
+   font-family: 'Bellota Text', cursive;
+}
+.hec .card
+{
+   width: 300px;
+   height: 300px;
+   padding: 50px 30px;
+   margin: 30px;
+   background: #f2f3f7;
+   box-shadow: 0.6em 0.6em 1.2em #d2dce9,
+               -0.5em -0.5em 1em #ffffff;
+   margin-bottom: 90px;
+   border-radius: 20px;
+}
+.hec .card .content
+{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+.hec .card .content .imgBx
+{
+   width: 180px;
+   height: 180px;
+   border-radius: 50%;
+   position: relative;
+   margin-bottom: 20px;
+   overflow: hidden;
+   transform: translateY(-150px);
+}
+.hec .card .content .imgBx img
+{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.hec .card .content .contentBx h4
+{
+   color: #36187d;
+   font-size: 1.5rem;
+   font-weight: bold;
+   text-align: center;
+   letter-spacing: 1px;
+   padding-bottom: 30px;
+   transform: translateY(-150px);
+}
+.hec .card .content .contentBx p
+{
+    color: #6c758f;
+   font-size: 1rem;
+   font-weight: bold;
+   text-align: center;
+   padding-bottom: 10px;
+   transform: translateY(-150px);
+}
+.hec .card .content .sci
+{
+   margin-top: 10px;
+   padding-top: 10px;
+   margin-bottom: 150px;
+   transform: translateY(-150px);  
+}
+.hec .card .content .sci a
+{
+   text-decoration: none;
+   color: #6c758f;
+   font-size: 30px;
+   margin: 10px;
+   transition: color 0.4s;
+   transform: translateY(-150px);
+}
+.hec .card .content .sci a:hover
+{
+    color: #0196e3;
+}
+/*   colors
+        #f2f3f7
+        #d2dce9
+        #36187d
+        #6c758f
+        #0196e3
+ */
+/* ----------------------------------------------------hec ends---------------------------- */
+/*--------------------------------------------------------------
+# F.A.Q
+--------------------------------------------------------------*/
+
