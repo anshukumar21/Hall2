@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -11,7 +10,7 @@ class MessMain(models.Model) :
     day_of_the_week=models.CharField(null=True,max_length=10)
     type_of_meal = models.CharField(null=True,max_length=10)
     
-    def __str__(self):
+    def __unicode__(self):
         return self.main_item_name
 
 #MODEL 2 (Extras Items)
@@ -21,7 +20,7 @@ class MessExtras(models.Model) :
     extras_name=models.CharField(null=True,max_length=35)
     extras_price=models.IntegerField(null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.extras_name
 
 #Model 3 (Items Ordered by all Users)
@@ -33,5 +32,5 @@ class ExtrasOrder(models.Model):
     item_price = models.IntegerField(null=True)
     meal_type = models.CharField(null=True,max_length=10)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.username
