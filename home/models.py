@@ -8,5 +8,5 @@ class Query(models.Model) :
     query = models.TextField(null=True)
     date_time = models.DateTimeField(auto_now=True)
     
-    def __unicode__(self):
-        return self.name + ' ' + self.date_time
+    def __str__(self):
+        return self.name + ' ' + str(self.date_time)

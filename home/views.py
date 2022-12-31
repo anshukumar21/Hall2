@@ -14,10 +14,14 @@ def home_view(request):
         serializer = QuerySerializer(data = data_dict)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return redirect('querysent')
         else:
             return Response("Error")
-    return render(request,"index.html")
+    else:
+        return render(request,"index.html")
 
 def gallery_view(request):
     return render(request,"gallery.html")
+
+def query_sent_view(request):
+    return render(request,"querysent.html")
