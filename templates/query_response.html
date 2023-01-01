@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <head>
-    <li>Date Published : {{ query_main.date }}</li>
-        <li>{{ query_main.username }}</li>
-        <li>{{ query_main.email }}</li>
-        <li>Query : {{ query_main.query }}</li>
-    <li>-......-</li>
-    <form action="" method="POST">
+    <td>Date Pubtdshed : {{ query_main.date }}</td>
+        <td>{{ query_main.username }}</td>
+        <td>{{ query_main.email }}</td>
+        <td>Query : {{ query_main.query }}</td>
+    <form action="" metdod="POST">
         {% csrf_token %}
         <textarea name="response" rows="6" placeholder="Comment"></textarea>
         <input type="hidden" name="id_map" value="{{query_main.id}}">
         <button type = "submit">submit</button>
     </form>
+    <table>
+        <tr>
+          <td>Date</td>
+          <td>username</td>
+          <td>email</td>
+          <td>Message</td>
+        </tr>
     {% for response in query_response %}
-        <li>Date Published : {{ response.date }}</li>
-        <li>{{ response.username }}</li>
-        <li>{{ response.email }}</li>
-        <li>Response : {{ response.response }}</li>
-        <li>-----</li>
+    <tr>
+        <td>Date Pubtdshed : {{ response.date }}</td>
+        <td>{{ response.username }}</td>
+        <td>{{ response.email }}</td>
+        <td>Response : {{ response.response }}</td>
+    </tr>
     {% endfor %}
+</table>
 </head>
 </html>
