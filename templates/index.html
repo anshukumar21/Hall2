@@ -51,9 +51,10 @@
                                     </div></li>
                             </ul>
                         </div></li>
-                    <li><a href="#"><i class="fa fa-users"></i>HEC</a></li>
+                    <li><a href="#"><i class="fa fa-users"></i>Team</a></li>
+                    <li><a href="https://www.iitk.ac.in/cc/IP_Details/Hostel_IP_Address.html" target="_blank"><i class="fa fa-edit"></i>Hostel IP adress</a></li>
+                    <li><a href="{% url 'login' %}"><i class="fa fa-edit"></i>Log in</a></li>
                     <li><a href="#"><i class="fa fa-phone"></i>Contact</a></li>
-                    <li><a href="https://www.iitk.ac.in/cc/IP_Details/Hostel_IP_Address.html"><i class="fa fa-edit"></i>Hostel IP adress</a></li>
                     <i class="fas fa-times" onclick="closemenu()"></i>
                 </ul>
             </div>
@@ -87,7 +88,7 @@
         <div class="FACILITY-list">
             <div>
                 <i class="fa-solid fa-plane"></i>
-                <h2>Mess</h2>
+                <h2>Mess & Canteen</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi culpa rerum similique autem eveniet deserunt iste dolores, explicabo, quidem repellat doloribus vel. Commodi nisi, dicta eligendi consequuntur hic ab non.
                 </p>
                 <a href="https://www.iitk.ac.in/hall2/mess.html">Learn more</a>
@@ -95,7 +96,7 @@
             </div>
             <div>
                 <i class="fa-solid fa-train-subway"></i>
-                <h2>Common Room</h2>
+                <h2>Common Rooms</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi culpa rerum similique autem eveniet deserunt iste dolores, explicabo, quidem repellat doloribus vel. Commodi nisi, dicta eligendi consequuntur hic ab non.
                 </p>
                 <a href="https://www.iitk.ac.in/hall2/tv-rr.html">Learn more</a>
@@ -103,7 +104,7 @@
             </div>
             <div>
                 <i class="fa-solid fa-car"></i>
-                <h2>Academics</h2>
+                <h2>Sports & Gym</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi culpa rerum similique autem eveniet deserunt iste dolores, explicabo, quidem repellat doloribus vel. Commodi nisi, dicta eligendi consequuntur hic ab non.
                 </p>
                 <a href="https://www.iitk.ac.in/hall2/am.html">Learn more</a>
@@ -232,17 +233,6 @@
                     <a href="https://in.linkedin.com/in/"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <a href="{% static 'img/cv.pdf' %}" class="btn btn2">Hall info</a>
-            </div>
-            <div class="contact-right">
-            <form action="" method="POST">
-                {% csrf_token %}
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="text" name="email" placeholder="Your Email" required>
-                <textarea name="query" rows="6" placeholder="Your Query"></textarea>
-                <button type="submit" class="btn btn2" type = "submit">submit</button>
-            </form>
-            <span id="msg"></span>
-            </div>
         </div>
     </div>
 </div>

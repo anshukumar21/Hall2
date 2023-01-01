@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <a href = "{% url 'send_query' %}">Create Query</a>
+    <p>Existing Queries:</p>
+    {% for queri in queries %}
+        <li>Date Published : {{ queri.date }}</li>
+        <li>{{ queri.username }}</li>
+        <li>{{ queri.email }}</li>
+        <li>Query : {{ queri.query }}</li>
+        <a href = "{% url 'queryresp' %}?id={{queri.id}}">go to query</a>
+        <li>-----</li>
+    {% endfor %}
+</head>
+</html>

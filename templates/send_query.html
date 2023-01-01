@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+    <title>Send Query</title>
+</head>
+<body>
+</div>
+    <p>Send Query Below:</p>
+    {% if form.errors %}
+            <p style="color: white;">
+            Please correct the error {{ form.errors|pluralize }} below.
+            </p>
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <textarea name="query" rows="6" placeholder="Your Query"></textarea>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
