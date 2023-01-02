@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'login_site',
     'userprofile',
     'home',
+    'query',
     'rest_framework',
     'crispy_forms',
 ]
