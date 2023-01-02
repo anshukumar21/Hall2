@@ -9,6 +9,7 @@ To run in local system:
 
 This Website as of now contains:
 1) User Login App
-2) User Profile App #work_in_progress
-3) Mess System App #work_in_progress
+2) User Profile App 
+3) Mess System App 
 4) Home app 
+5) Query app
