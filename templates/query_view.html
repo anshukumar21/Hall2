@@ -1,14 +1,67 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <a href = "{% url 'send_query' %}">Create Query</a>
-    <p>Existing Queries:</p>
-    {% for queri in queries %}
-        <li>Date Published : {{ queri.date }}</li>
-        <li>{{ queri.username }}</li>
-        <li>{{ queri.email }}</li>
-        <li>Query : {{ queri.query }}</li>
-        <a href = "{% url 'queryresp' %}?id={{queri.id}}">go to query</a>
-        <li>-----</li>
-    {% endfor %}
+    <meta charset="utf-8">
+    <title>View Query</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .content-table{
+            border-collapse:collapse;
+            margin:25px auto;
+            font-size:0.9rem;
+            min-width:400px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0,0,0,0.15);
+        }
+        .content-table thead tr{
+            background-color: #009879;
+            color:#ffffff;
+            text-align:left;
+            font-weight:bold;
+        }
+        .content-table th, .content-table td{
+            padding: 12px 15px;
+        }
+        .content-table tr{
+            border-bottom: 1px solid #dddddd;
+        }
+        .content-table tr:nth-of-type(even){
+            background-color:#f3f3f3;
+        }
+        .content-table tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tr.active-row{
+            font-weight:bold;
+            color:#009879;
+
+        }
+    </style>
 </head>
+<body>
+    <div style="margin-top:20px;margin-left:450px;display: inline-block;"><a href = "{% url 'send_query' %}" class="btn btn-primary">Create New Query</a></div>
+    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Menu</a></div>
+    <p style="text-align:center;">Existing Queries:</p>
+    <table class="content-table">
+        <thead>
+        <tr>
+          <td>Date</td>
+          <td>UserName</td>
+          <td>Email</td>
+          <td>Message</td>
+          <td>View Query</td>
+        </tr>
+    </thead>
+    {% for queri in queries %}
+    <tr>
+        <td>{{ queri.date }}</td>
+        <td>{{ queri.username }}</td>
+        <td>{{ queri.email }}</td>
+        <td>{{ queri.query }}</td>
+        <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
 </html>
