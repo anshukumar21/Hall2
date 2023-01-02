@@ -1,14 +1,23 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <td>Date Pubtdshed : {{ query_main.date }}</td>
+    <meta charset="utf-8">
+    <title>View individual Query</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <td>Date Published : {{ query_main.date }}</td>
         <td>{{ query_main.username }}</td>
         <td>{{ query_main.email }}</td>
         <td>Query : {{ query_main.query }}</td>
     <form action="" metdod="POST">
         {% csrf_token %}
-        <textarea name="response" rows="6" placeholder="Comment"></textarea>
+        <textarea name="response" placeholder="Comment" style="width: 30%; height: 100px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
         <input type="hidden" name="id_map" value="{{query_main.id}}">
-        <button type = "submit">submit</button>
+        <button type = "submit" class="btn btn-success mx-auto" style="display: block;margin:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">submit</button>
     </form>
     <table>
         <tr>
@@ -26,5 +35,5 @@
     </tr>
     {% endfor %}
 </table>
-</head>
+</body>
 </html>

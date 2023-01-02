@@ -55,11 +55,11 @@
     </thead>
     {% for queri in queries %}
     <tr>
-        <td>Date: {{ queri.date }}</td>
+        <td>{{ queri.date }}</td>
         <td>{{ queri.username }}</td>
         <td>{{ queri.email }}</td>
         <td>{{ queri.query }}</td>
-        <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">go to query</a></td>
+        <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
     </tr>
     {% endfor %}
 </table>
