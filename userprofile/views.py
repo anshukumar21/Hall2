@@ -62,4 +62,3 @@ def form_sent_view(request):
     name = request.GET.get('name')
     form = {'name':name}
     return render(request,"query_resp_formsent.html",{'form':form})
-
