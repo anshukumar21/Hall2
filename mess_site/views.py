@@ -35,18 +35,15 @@ def main_menu_list(request):
     dinner_end =  current_time.replace(hour=22,minute=0, second=0, microsecond=0)
     if breakfast_start <= current_time <= breakfast_end:
         orders =  MessMain.objects.filter(meal_type='breakfast').order_by('id').values()
-        serializer = MessMainSerializer(orders, many=True)
-        return Response(serializer.data)
+        return orders
     elif lunch_start <= current_time <= lunch_end:
         orders =  MessMain.objects.filter(meal_type='lunch').order_by('id').values()
-        serializer = MessMainSerializer(orders, many=True)
-        return Response(serializer.data)
+        return orders
     elif dinner_start <= current_time <= dinner_end:
         orders =  MessMain.objects.filter(meal_type='dinner').order_by('id').values()
-        serializer = MessMainSerializer(orders, many=True)
-        return Response(serializer.data)
+        return orders
     else:
-        return Response('Menu Unavailable')
+        return None
 
 #View 3 : This will output the list of items in the extras menu (Redundant as of now)
 @api_view(['GET'])
@@ -58,19 +55,37 @@ def extras_menu_list(request):
 #View 4 : This will output the list of all items in the menu (Doesnt display all items...only provision to display one item each)
 @login_required
 def menu_view(request):
-    i=1
-    context={}
-    for object in MessExtras.objects.all():
-        context["Extras_"+str(i)] = object.extras_name
-        context["price_"+str(i)] = object.extras_price
-        i=i+1
-
-    i=1
-    for object in MessMain.objects.all():
-        context["Main_"+str(i)] = object.main_item_name
-        context["Day_"+str(i)] = object.day_of_the_week
-        i=i+1
-    return render(request,'mess.html', context)
+    user = request.user
+    if request.method == "POST":
+        item_id = request.POST.get('id')
+        quantity = int(request.POST.get('quantity'))
+        username = user.username
+        email = user.email
+        order_date = datetime.date.today()
+        extra = MessExtras.objects.get(id = item_id)
+        item_name = extra.extras_name
+        item_price = extra.extras_price
+        data_dict = {
+            'username' : username,
+            'email' : email,
+            'order_date' : order_date,
+            'item_name' : item_name,
+            'item_price' : item_price,
+            'quantity' : quantity,
+        }
+        serializer = ExtrasOrderSerializer(data=data_dict)
+        if serializer.is_valid():
+            serializer.save()
+            return redirect('../addextra/')
+        else:
+            Response("Error")
+    extras = MessExtras.objects.all()
+    mains =  MessMain.objects.all()
+    extra_added = ExtrasOrder.objects.filter(username = user.username, order_date=datetime.date.today())
+    total_price = 0
+    for extra in extra_added:
+        total_price += (extra.item_price)*(extra.quantity)
+    return render(request,'mess.html', {'mains':mains,'extras':extras, 'extra_added':extra_added, 'total_price':total_price})
 
 
 #View 5 : Can only be seen by the manager and 
@@ -94,3 +109,6 @@ def manager_view(request):
         return render(request,'manager.html')
     else:
         return render(request,"404error.html")
+
+def add_extra(request):
+    return render(request,"add_extra_success.html")
