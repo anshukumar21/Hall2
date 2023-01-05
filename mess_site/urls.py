@@ -7,4 +7,5 @@ urlpatterns = [
     path('',views.mess_home,name='mess'),
     path('menu/',views.menu_view,name='menu'),
     path('manager/',views.manager_view,name='manager_view'),
+    path('addextra/',views.add_extra,name='addextra'),
 ]
