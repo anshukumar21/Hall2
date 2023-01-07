@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <title>Event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <p style="text-align: center;margin:20px;"><b>Create Event :<b></p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="fname">Event Headline:</label><br>
+        <input type="text" id="event_headline" name="event_headline"><br>
+        <label for="event_date">Event Date:</label>
+        <input type="date" id="event_date" name="event_date">
+        <label for="event_time">Event Time:</label>
+        <input type="time" id="event_time" name="event_time">
+        <button type="submit" class="btn btn-success mx-auto" style="display: block;margin:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">submit</button>
+    </form>
+    <div style="margin-bottom:20px;text-align:center"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
+    
+</div>
+</body>
+</html>
