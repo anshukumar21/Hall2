@@ -13,3 +13,4 @@ This Website as of now contains:
 3) Mess System App 
 4) Home app 
 5) Query app
+6) Announcement app
