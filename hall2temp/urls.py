@@ -22,7 +22,8 @@ urlpatterns = [
     path ('query/', include('query.urls')),
     path ('userprofile/', include('userprofile.urls')),
     path('',include('home.urls')),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('announcement/',include('announcement.urls'))
 ]
 
 handler404 = 'login_site.views.handler404'

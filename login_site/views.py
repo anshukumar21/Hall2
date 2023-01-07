@@ -4,7 +4,11 @@ from .forms import SignUpForm
 from django.contrib.auth import logout, update_session_auth_hash, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
 
 #View 0 : For handling error
 def handler404(request, *args, **argv):
@@ -16,6 +20,21 @@ def sign_up_view(request):
         form = SignUpForm(data=request.POST)
         if form.is_valid():
             form.save()
+            """user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your account.'
+            message = render_to_string('acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user.id)).decode(),
+                'token':account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
+            email.send()"""
             return redirect('login')
     else:
         form = SignUpForm()

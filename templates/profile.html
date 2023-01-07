@@ -58,6 +58,13 @@
                 <i class="fas fa-sign-out-alt"></i> Queries
             </a>
         </li>
+        {% if user.is_staff %}
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'make_announcement' %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fas fa-sign-out-alt"></i> Make Announcement
+            </a>
+        </li>
+        {% endif %}
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link" href="{%url 'logout' %}" style="font-family: 'Nunito Sans', sans-serif;">

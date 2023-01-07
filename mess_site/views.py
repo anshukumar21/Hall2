@@ -1,14 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import Http404,HttpResponse
 from .models import MessMain, MessExtras, ExtrasOrder
-from django.http import Http404, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MessExtrasSerializer,MessMainSerializer, ExtrasOrderSerializer
 import datetime
 from django.contrib.auth.decorators import login_required
-from urllib.error import HTTPError
-from urllib.parse import urlparse
 
 # Create your views here.
 

@@ -9,6 +9,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=20,required=True)
     last_name = forms.CharField(max_length=20,required=True)
+    #is_staff = forms.BooleanField(default=False)
 
     class Meta:
         model = User 
