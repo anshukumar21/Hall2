@@ -9,6 +9,8 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     first_name = forms.CharField(max_length=20,required=True)
     last_name = forms.CharField(max_length=20,required=True)
+    #is_staff = forms.BooleanField(default=False)
+
     class Meta:
         model = User 
         fields = ["email", "username", "first_name", "last_name", "is_staff", "password1", "password2"]
