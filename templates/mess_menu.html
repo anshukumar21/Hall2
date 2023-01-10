@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <a href = "{% url 'mess' %}" class="btn btn-primary">Mess Home</a>
+        <p>Main Menu</p>
+        {% for item in mains %}
+            <tr>
+                <td>Name : {{ item.main_item_name }}</td>
+                <td>Day : {{ item.day_of_the_week }}</td>
+                <td>Type : {{ item.type_of_meal }}</td>
+            </tr>
+            <p>--------</p>
+        {% endfor %}
+        <br>
+        <p>Extras Menu</p>
+        {% for extra in extras %}
+            <tr>
+                <td>Name : {{ extra.extras_name }}</td>
+                <td>Price : {{ extra.extras_price }}</td>
+            </tr>
+            <p>--------</p>
+        {% endfor %}
+        <br>
+    </body>
+</html>

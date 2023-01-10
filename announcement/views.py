@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Announcement
+from .models import Announcement, Event
 from .serializers import AnnouncementSerializer, EventSerializer
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response

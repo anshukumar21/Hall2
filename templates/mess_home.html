@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <a href = "{% url 'menu' %}" class="btn btn-primary">Mess Menu</a>
+        <br>
+        {% if not user.is_staff %}
+            <a href = "{% url 'orderextra' %}" class="btn btn-primary">Order Extra</a>
+        {% endif %}
+        <br>
+        {% if user.is_staff %}
+            <a href = "{% url 'manager_view' %}" class="btn btn-primary">Update Menu</a>
+        {% endif %}
+        <br>
+    </body>
+</html>

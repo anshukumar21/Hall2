@@ -7,5 +7,6 @@ urlpatterns = [
     path('',views.mess_home,name='mess'),
     path('menu/',views.menu_view,name='menu'),
     path('manager/',views.manager_view,name='manager_view'),
-    path('addextra/',views.add_extra,name='addextra'),
+    path('extraadded/',views.extra_added,name='extraadded'),
+    path('orderextra/',views.order_extras,name='orderextra'),
 ]
