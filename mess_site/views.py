@@ -9,6 +9,7 @@ from .forms import OrderForm
 
 # Create your views here.
 
+#View 1 : Mess Homepage which shows various options based on user status
 @login_required
 def mess_home(request):
     user = request.user
@@ -46,12 +47,13 @@ def extras_menu_list(request):
     serializer = MessExtrasSerializer(orders, many=True)
     return Response(serializer.data)
 
+#View 4 : This prints the main menu for that day
 def menu_view(request):
     extras = MessExtras.objects.all()
     mains =  MessMain.objects.all()
     return render(request,'mess_menu.html', {'mains':mains,'extras':extras})
 
-#View 4 : This will output the list of all items in the menu (Doesnt display all items...only provision to display one item each)
+#View 5 : Can and only be seen by students and they can order extras here 
 @login_required
 def order_extras(request):
     user = request.user
@@ -74,7 +76,17 @@ def order_extras(request):
     else:
         return render(request,"404error.html")
 
-#View 5 : Can only be seen by the manager and 
+#View 6 : Displayed after extras have been ordered
+@login_required
+def extra_added(request):
+    user = request.user
+    if not user.is_staff:
+        orders = ExtrasOrder.objects.all()
+        return render(request,"add_extra_success.html",{'orders':orders})
+    else:
+        return render(request,"404error.html")
+
+#View 7 : Can only be seen by the mess manager and he can add extra and main menu items
 @api_view(['GET','POST'])
 def manager_view(request):
     if request.user.is_staff == True:
@@ -93,14 +105,5 @@ def manager_view(request):
                 serializer.save()
                 return redirect('/mess_site/')
         return render(request,'manager.html')
-    else:
-        return render(request,"404error.html")
-
-@login_required
-def extra_added(request):
-    user = request.user
-    if not user.is_staff:
-        orders = ExtrasOrder.objects.all()
-        return render(request,"add_extra_success.html",{'orders':orders})
     else:
         return render(request,"404error.html")

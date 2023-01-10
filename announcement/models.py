@@ -1,6 +1,8 @@
 from django.db import models
 import datetime
 # Create your models here.
+
+#Model 1 : Database features for the Anouncements Made by Admin Users
 class Announcement(models.Model) :
   
     username = models.CharField(null=True,max_length=150)
@@ -11,6 +13,7 @@ class Announcement(models.Model) :
     def __str__(self):
         return self.username + ' ' + str(self.date)
 
+#Model 2 : Database fields for the Events added by Admin Users
 class Event(models.Model):
     username = models.CharField(null=True,max_length=150)
     email = models.CharField(null=True,max_length=50) 

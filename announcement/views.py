@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from .forms import AnnouncementForm, EventForm
 # Create your views here.
 
+#View 1 : Makes announcement based on form 
 @login_required
 def make_announcement(request):
     user = request.user
@@ -28,6 +29,7 @@ def make_announcement(request):
     else:
         return Response("Error")
 
+#View 2 : Makes event based on form 
 @login_required
 def add_event(request):
     user = request.user

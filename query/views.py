@@ -7,10 +7,12 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # Create your views here.
 
+#View 1 : To view all queries posted by users
 def query_view(request):
     queries = Query.objects.all().order_by('-id')
     return render(request,'query_view.html',{'queries' : queries})
 
+#View 2 : To send query by user
 def send_query(request):
     if request.method == "POST":
         user = request.user
@@ -29,6 +31,7 @@ def send_query(request):
         form = QueryForm()
     return render(request,"send_query.html",{'form':form})
 
+#View 3 : To send comment on a particular query
 @api_view(['GET','POST'])
 def query_response(request):
     if request.method == 'POST':
@@ -53,5 +56,6 @@ def query_response(request):
     query_response = QueryResponse.objects.filter(id_map=id)
     return render(request, 'query_response.html', {'query_main':query_main,'query_response':query_response})
 
+#View 4 : Form successfully send view
 def form_sent_view(request):
     return render(request,"formsent.html")
