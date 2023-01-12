@@ -1,0 +1,16 @@
+<html>
+<body>
+    <form action=" " method = "POST">
+        {%csrf_token%}
+        {%for extra in extras%}
+            <p>Item name : {{extra.extras_name}}</p>
+            <label for="order">Order : </label>
+            <input type="checkbox" id="order" name="order" value="{{extra.id}}">
+            <br>
+            <p >Price : {{extra.extras_price}}</p>
+            <p>-------</p>
+        {% endfor %}
+        <input type="submit" value="Add Extras">
+    </form>
+</body>
+</html>

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-#This App contains 1 URL : for showing profile page of user
+#This App contains 4 URL : for showing list of all queries, for creating query, for sending comments, query/comment succesffuly sent 
 
 urlpatterns = [
     path('queries/',views.query_view,name='queries'),

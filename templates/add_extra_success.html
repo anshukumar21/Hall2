@@ -3,7 +3,16 @@
     <title>Success</title>
 </head>
 <body>
-    <p style="text-align: center;margin:20px;">Added Extra</p>
+    <p style="text-align: center;margin:20px;">Added Extras</p>
+    {% for order in orders%}
+        <p>{{order.order_date}}</p>
+        {% for item in order.item_id.all %}
+            <p>Item : {{item.extras_name}}</p>
+            <p>Price : {{item.extras_price}}</p>
+        {% endfor %}
+        <p>----</p>
+    {% endfor %}
+    <p>Successfully Added</p>
     <div style="text-align: center;margin:20px;">
         <a href="{% url 'menu' %}">Go Back to menu Page</a>
     </div>

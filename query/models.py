@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 # Create your models here.
 
+#Model 1 : Queries database
 class Query(models.Model) :
   
     username = models.CharField(null=True,max_length=150)
@@ -12,6 +13,7 @@ class Query(models.Model) :
     def __str__(self):
         return self.name + ' ' + str(self.id) + ' ' + str(self.date)
 
+#Model 2 : Comments database
 class QueryResponse(models.Model):
     email = models.EmailField(blank=False)
     username = models.CharField(blank=False,max_length=150)

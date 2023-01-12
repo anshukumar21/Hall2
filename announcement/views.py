@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Announcement
+from .models import Announcement, Event
 from .serializers import AnnouncementSerializer, EventSerializer
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from .forms import AnnouncementForm, EventForm
 # Create your views here.
 
+#View 1 : Makes announcement based on form 
 @login_required
 def make_announcement(request):
     user = request.user
@@ -28,6 +29,7 @@ def make_announcement(request):
     else:
         return Response("Error")
 
+#View 2 : Makes event based on form 
 @login_required
 def add_event(request):
     user = request.user

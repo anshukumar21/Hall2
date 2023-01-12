@@ -5,16 +5,15 @@ from rest_framework.response import Response
 from .serializers import MessExtrasSerializer,MessMainSerializer, ExtrasOrderSerializer
 import datetime
 from django.contrib.auth.decorators import login_required
+from .forms import OrderForm
 
 # Create your views here.
 
-#View 1: This function redirects user based on staff status (if not logged in redirects to login page)
-@api_view(['GET'])
+#View 1 : Mess Homepage which shows various options based on user status
+@login_required
 def mess_home(request):
-    if(request.user.is_staff==True):
-        return redirect('manager_view')
-    elif request.user.is_staff==False:
-        return redirect('menu')
+    user = request.user
+    return render(request,'mess_home.html',{'user':user})
 
 #View 2 : This will output the list of items in regular menu (Redundant as of now)
 @api_view(['GET'])
@@ -48,43 +47,46 @@ def extras_menu_list(request):
     serializer = MessExtrasSerializer(orders, many=True)
     return Response(serializer.data)
 
-#View 4 : This will output the list of all items in the menu (Doesnt display all items...only provision to display one item each)
-@login_required
+#View 4 : This prints the main menu for that day
 def menu_view(request):
-    user = request.user
-    if request.method == "POST":
-        item_id = request.POST.get('id')
-        quantity = int(request.POST.get('quantity'))
-        username = user.username
-        email = user.email
-        order_date = datetime.date.today()
-        extra = MessExtras.objects.get(id = item_id)
-        item_name = extra.extras_name
-        item_price = extra.extras_price
-        data_dict = {
-            'username' : username,
-            'email' : email,
-            'order_date' : order_date,
-            'item_name' : item_name,
-            'item_price' : item_price,
-            'quantity' : quantity,
-        }
-        serializer = ExtrasOrderSerializer(data=data_dict)
-        if serializer.is_valid():
-            serializer.save()
-            return redirect('../addextra/')
-        else:
-            Response("Error")
     extras = MessExtras.objects.all()
     mains =  MessMain.objects.all()
-    extra_added = ExtrasOrder.objects.filter(username = user.username, order_date=datetime.date.today())
-    total_price = 0
-    for extra in extra_added:
-        total_price += (extra.item_price)*(extra.quantity)
-    return render(request,'mess.html', {'mains':mains,'extras':extras, 'extra_added':extra_added, 'total_price':total_price})
+    return render(request,'mess_menu.html', {'mains':mains,'extras':extras})
 
+#View 5 : Can and only be seen by students and they can order extras here 
+@login_required
+def order_extras(request):
+    user = request.user
+    if not user.is_staff:
+        extras = MessExtras.objects.all()
+        if request.method == "POST":
+            username = user.username
+            email = user.email
+            ordered_ids = request.POST.getlist('order')
+            extras_items = []
+            for id in ordered_ids:
+                extras_items.append(MessExtras.objects.get(id = int(id)))
+            order_date = datetime.date.today()
+            extra_order = ExtrasOrder.objects.create(username = username, email = email, order_date = order_date)
+            for item in extras_items:
+                extra_order.item_id.add(item)
+            return redirect('extraadded')
+        extras = MessExtras.objects.all()
+        return render(request,'extras_order.html', {'extras':extras})
+    else:
+        return render(request,"404error.html")
 
-#View 5 : Can only be seen by the manager and 
+#View 6 : Displayed after extras have been ordered
+@login_required
+def extra_added(request):
+    user = request.user
+    if not user.is_staff:
+        orders = ExtrasOrder.objects.all()
+        return render(request,"add_extra_success.html",{'orders':orders})
+    else:
+        return render(request,"404error.html")
+
+#View 7 : Can only be seen by the mess manager and he can add extra and main menu items
 @api_view(['GET','POST'])
 def manager_view(request):
     if request.user.is_staff == True:
@@ -101,10 +103,7 @@ def manager_view(request):
                 serializer = MessMainSerializer(data = data_dict)
             if serializer.is_valid():
                 serializer.save()
-                return redirect('/mess_site/manager/')
+                return redirect('/mess_site/')
         return render(request,'manager.html')
     else:
         return render(request,"404error.html")
-
-def add_extra(request):
-    return render(request,"add_extra_success.html")
