@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a>
+        <p>Due List For the year</p>
+        {% for due in user_dues %}
+            <tr>
+                <td>Month of Due : {{ due.order_month }}</td>
+                <td>Total Due : {{ due.total }}</td>
+            </tr>
+            <p>--------</p>
+        {% endfor %}
+        <br>
+    </body>
+</html>
