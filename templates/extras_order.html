@@ -1,16 +1,87 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8">
+    <title>Order Extras</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .content-table{
+            border-collapse:collapse;
+            margin:25px auto;
+            font-size:0.9rem;
+            min-width:400px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0,0,0,0.15);
+        }
+        .content-table thead tr{
+            background-color: #009879;
+            color:#ffffff;
+            text-align:left;
+            font-weight:bold;
+        }
+        .content-table th, .content-table td{
+            padding: 12px 15px;
+        }
+        .content-table tr{
+            border-bottom: 1px solid #dddddd;
+        }
+        .content-table tr:nth-of-type(even){
+            background-color:#f3f3f3;
+        }
+        .content-table tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tr.active-row{
+            font-weight:bold;
+            color:#009879;
+
+        }
+    </style>
+</head>
 <body>
-    <form action=" " method = "POST">
+    <div style="margin-top:20px;margin-left:450px;display: inline-block;"><a href = "{% url 'send_query' %}" class="btn btn-primary">View Total Extras</a></div>
+    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
+    <p style="text-align:center;">Order Extras:</p>
+
+    <script>
+        function validateForm() {
+            var checkboxes = document.getElementsByName('order');
+            var checkboxChecked = false;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checkboxChecked = true;
+                    break;
+                }
+            }
+            if (!checkboxChecked) {
+                alert("Please select at least one item to order.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <form action=" " method = "POST" onsubmit="return validateForm()">
         {%csrf_token%}
-        {%for extra in extras%}
-            <p>Item name : {{extra.extras_name}}</p>
-            <label for="order">Order : </label>
-            <input type="checkbox" id="order" name="order" value="{{extra.id}}">
-            <br>
-            <p >Price : {{extra.extras_price}}</p>
-            <p>-------</p>
-        {% endfor %}
-        <input type="submit" value="Add Extras">
+        <table class="content-table">
+            <thead>
+                <tr>
+                <td>Item name</td>
+                <td>Order</td> 
+                <td>Price</td>
+                </tr>
+            </thead>
+            {%for extra in extras%}
+                <tr>
+                    <td>{{extra.extras_name}}</td>
+                    <td><input type="checkbox" name="order" value="{{extra.id}}"></td>
+                    <td>{{extra.extras_price}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <input type="submit" value="Add Extras" style="margin:auto; display:block; padding: 1% 5%; background-color: #4CAF50; color: white;">
     </form>
 </body>
 </html>
