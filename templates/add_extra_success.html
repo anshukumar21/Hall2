@@ -6,7 +6,7 @@
     <p style="text-align: center;margin:20px;">Added Extras</p>
     {% for order in orders%}
         <p>{{order.order_date}}</p>
-        {% for item in order.item_id.all %}
+        {% for item in order.item_map.all %}
             <p>Item : {{item.extras_name}}</p>
             <p>Price : {{item.extras_price}}</p>
         {% endfor %}

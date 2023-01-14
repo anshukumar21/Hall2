@@ -13,3 +13,6 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["email", "username", "first_name", "last_name", "is_staff", "password1", "password2"]
+
+class OTPForm(forms.Form):
+    otp = forms.IntegerField(required=True)

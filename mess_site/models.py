@@ -29,7 +29,8 @@ class ExtrasOrder(models.Model):
     username = models.CharField(null=True,max_length=150)
     email=models.CharField(null=True,max_length=50)
     order_date= models.DateField(null=True)
-    item_id = models.ManyToManyField(MessExtras)
+    order_month = models.IntegerField(null=True)
+    item_map = models.ManyToManyField(MessExtras)
 
     def __str__(self):
         return self.username + ' ' + str(self.order_date)

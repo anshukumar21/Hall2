@@ -1,9 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm 
-from .forms import SignUpForm
+from .forms import SignUpForm, OTPForm
 from django.contrib.auth import logout, update_session_auth_hash, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+import math, random
+from .models import User_OTP
+from django.core.mail import send_mail
+from hall2temp.settings import EMAIL_HOST_USER
+from django.http import HttpResponse
+
+def generateOTP() :
+     digits = "0123456789"
+     otp = ""
+     for i in range(4):
+        otp += digits[math.floor(random.random() * 10)]
+     return otp
+
 #View 0 : For handling error
 def handler404(request, *args, **argv):
     return render(request,'404error.html')
@@ -13,11 +27,42 @@ def sign_up_view(request):
     if request.method == "POST" :
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            email = form.cleaned_data.get('email')
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            otp = generateOTP()
+            user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
+            user_otp.save()
+            subject = 'Activate Your Account'
+            message = 'Your OTP for verification is : ' + str(otp)
+            send_mail(subject, message, EMAIL_HOST_USER, [email], fail_silently=False)
+            return redirect('otp_verify',username = user.username)
+        else:
+            return HttpResponse("Form Invalid")
     else:
         form = SignUpForm()
     return render(request,"login.html",{'form':form})
+
+def otp_verify(request, username):
+    if request.method=='POST':
+        form = OTPForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            otp_given = int(data['otp'])
+            otp_required = User_OTP.objects.get(username = username).otp_generated
+            if otp_given == otp_required:
+                user = User.objects.get(username=username)
+                user.is_active = True
+                user.save()
+                return redirect('login')
+            else:
+                return HttpResponse("OTP Wrong")
+        else:
+            return HttpResponse("Form Invalid")
+    else:
+        form = OTPForm()
+    return render(request,'otp_enter.html',{'form':form})
 
 #View 2 : To Login a User who has already signed up. Upon succesful login it redirects to Profile page
 def login_view(request):

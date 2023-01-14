@@ -67,9 +67,10 @@ def order_extras(request):
             for id in ordered_ids:
                 extras_items.append(MessExtras.objects.get(id = int(id)))
             order_date = datetime.date.today()
-            extra_order = ExtrasOrder.objects.create(username = username, email = email, order_date = order_date)
+            order_month = datetime.datetime.now().month
+            extra_order = ExtrasOrder.objects.create(username = username, email = email, order_date = order_date, order_month=order_month)
             for item in extras_items:
-                extra_order.item_id.add(item)
+                extra_order.item_map.add(item)
             return redirect('extraadded')
         extras = MessExtras.objects.all()
         return render(request,'extras_order.html', {'extras':extras})
@@ -81,7 +82,7 @@ def order_extras(request):
 def extra_added(request):
     user = request.user
     if not user.is_staff:
-        orders = ExtrasOrder.objects.all()
+        orders = ExtrasOrder.objects.filter(username = user.username)
         return render(request,"add_extra_success.html",{'orders':orders})
     else:
         return render(request,"404error.html")
