@@ -16,3 +16,6 @@ class SignUpForm(UserCreationForm):
 
 class OTPForm(forms.Form):
     otp = forms.IntegerField(required=True)
+
+class ForgotPasswordForm(forms.Form):
+    username = forms.CharField(required=True,max_length=150)
