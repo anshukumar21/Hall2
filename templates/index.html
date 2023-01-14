@@ -417,6 +417,9 @@
     </div>
   </footer>
 </div><!-- End Footer -->
+<p>This page was viewed</p>
+<h1 id="count">0</h1>
+<p>times</p>
 <!-- -------------------javascript start------------------------ -->
     <script type="text/javascript">
         window.addEventListener("scroll",function(){
@@ -452,6 +455,20 @@
         time: 1200
       });
     });
+    </script>
+    {% comment %} -----------------------------hall visit counter-------------------- {% endcomment %}
+    <script>
+      const countEl = document.getElementById('count');
+
+updateVisitCount();
+
+function updateVisitCount() {
+	fetch('https://api.countapi.xyz/update/hall2/website/?amount=1')
+	.then(res => res.json())
+	.then(res => {
+		countEl.innerHTML = res.value;
+	})
+}
     </script>
 <!-- -------------------javascript end------------------------ -->
 </body>
