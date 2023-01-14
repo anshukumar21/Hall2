@@ -6,25 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
-    <title>sticky nav</title>
+    <title>Hall 2</title>
     <link rel="stylesheet" href="{% static 'css/jquery.flipster.min.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+    <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
 
 </head>
 <body>
+  <div id="header">
     <header>
         <a href="#" class="logo">Hall 2</a>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Facility</a></li>
-            <li><a href="#">HEC</a></li>
-            <li><a href="#">Contact us</a></li>
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">Mess</a></li>
+            <li><a href="#facility">Facility</a></li>
+            <li><a href="#hec">Administration</a></li>
+            <li><a href="#contact">People</a></li>
             <li><a href="{%url 'login' %}">Login</a></li>
         </ul>
     </header>
@@ -33,7 +34,9 @@
             <h1> Hall 2 an <span class="auto-type">Baikait</span></h1>
         </div>
     </section>
+  </div>
 <!-- ------------------------------About us counter starts------------------------ -->
+<div id="about">
 <div class="counter-up">
     <div class="content">
       <div class="box">
@@ -58,8 +61,10 @@
       </div>
     </div>
   </div>
+</div>
 <!-- ------------------------------About us counter ends------------------------ -->
   <!-- ----------------------------------------Facility starts--------------------------------- -->
+  <div id="facility">
   <h1>Gallery</h1>
   <div class="hero">
     <div class="carousel">
@@ -79,8 +84,10 @@
         </ul>
     </div>
 </div>
+</div>
   <!-- ----------------------------------------Facility ends--------------------------------- -->
 <!-- ------------------HEC starts------------------------- -->
+<div id="hec">
 <h1>HALL Executives Committee</h1>
     <div class="hec">
         <div class="card">
@@ -184,6 +191,7 @@
             </div>
         </div>     
     </div>
+  </div>
 <!-- -------------------------HEC ends------------------------ -->
  <!-- ======= F.A.Q Section ======= -->
  <div id="faq" class="faq">
@@ -320,18 +328,20 @@
 
 </div><!-- End F.A.Q Section -->
 <!-- ======= Footer starts ======= -->
+<div id="contact">
+
 <footer id="footer" class="footer">
 
     <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
-            <h4>Our Newsletter</h4>
-            <p>Let us send you the best email weekly. Discussing what happened over the last seven days in India.</p>
+            <h4>Send a Mail to HEC</h4>
+            <p></p>
           </div>
           <div class="col-lg-6">
             <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+              <input type="email" name="email"><input type="submit" value="Send">
             </form>
           </div>
         </div>
@@ -358,11 +368,11 @@
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Facility</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">HEC</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Contact us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#header">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#facility">Facility</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#hec">HEC</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact us</a></li>
             </ul>
           </div>
 
@@ -405,7 +415,11 @@
         Made with <i class="fa fa-heart"></i> by Anshu Kumar and ppopdesk
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer>
+</div><!-- End Footer -->
+<p>This page was viewed</p>
+<h1 id="count">0</h1>
+<p>times</p>
 <!-- -------------------javascript start------------------------ -->
     <script type="text/javascript">
         window.addEventListener("scroll",function(){
@@ -441,6 +455,20 @@
         time: 1200
       });
     });
+    </script>
+    {% comment %} -----------------------------hall visit counter-------------------- {% endcomment %}
+    <script>
+      const countEl = document.getElementById('count');
+
+updateVisitCount();
+
+function updateVisitCount() {
+	fetch('https://api.countapi.xyz/update/hall2/website/?amount=1')
+	.then(res => res.json())
+	.then(res => {
+		countEl.innerHTML = res.value;
+	})
+}
     </script>
 <!-- -------------------javascript end------------------------ -->
 </body>
